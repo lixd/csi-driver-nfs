@@ -199,11 +199,16 @@ func (cs *ControllerServer) DeleteVolume(ctx context.Context, req *csi.DeleteVol
 }
 
 func (cs *ControllerServer) ControllerPublishVolume(ctx context.Context, req *csi.ControllerPublishVolumeRequest) (*csi.ControllerPublishVolumeResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "")
+	return &csi.ControllerPublishVolumeResponse{
+		// the dummy response carry an empty map in its response.
+		PublishContext: map[string]string{},
+	}, nil
+	// return nil, status.Error(codes.Unimplemented, "")
 }
 
 func (cs *ControllerServer) ControllerUnpublishVolume(ctx context.Context, req *csi.ControllerUnpublishVolumeRequest) (*csi.ControllerUnpublishVolumeResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "")
+	return &csi.ControllerUnpublishVolumeResponse{}, nil
+	// return nil, status.Error(codes.Unimplemented, "")
 }
 
 func (cs *ControllerServer) ControllerGetVolume(ctx context.Context, req *csi.ControllerGetVolumeRequest) (*csi.ControllerGetVolumeResponse, error) {
